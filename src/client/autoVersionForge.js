@@ -1,6 +1,8 @@
 'use strict';
 
 var forgeHandshake = require('./forgeHandshake');
+var forgeHandshake2 = require('./forgeHandshake2');
+var forgeHandshake3 = require('./forgeHandshake3');
 
 module.exports = function (client, options) {
   if (!client.autoVersionHooks) client.autoVersionHooks = [];
@@ -27,7 +29,21 @@ module.exports = function (client, options) {
     var forgeMods = response.forgeData.mods;
     console.log('Using forgeMods:', forgeMods);
 
-    // Install the FML|HS plugin with the given mods
+    // Install the FML2 plugin with the given mods
     forgeHandshake2(client, { forgeMods });
+  });
+
+  
+  client.autoVersionHooks.push(function (response, client, options) {
+    if (!response.forgeData || response.forgeData.fmlNetworkVersion !== 3) {
+      return; // not ours
+    }
+
+    // Use the list of Forge mods provided
+    var forgeMods = options.forgeMods;
+    console.log('Using forgeMods:', forgeMods);
+
+    // Install the FML3 plugin with the given mods
+    forgeHandshake3(client, { forgeMods });
   });
 };
