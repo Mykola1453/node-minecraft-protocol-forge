@@ -26,6 +26,6 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "protodef": "^1.0.0"
+    "protodef": "^1.15.0"
   }
 }
