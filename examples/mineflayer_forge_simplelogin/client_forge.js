@@ -1,7 +1,7 @@
-var mineflayer = require('mineflayer')
-var pathfinder = require('mineflayer-pathfinder')
-var autoVersionForge = require('../../src/client/autoVersionForge')
-var simplelogin = require('./simplelogin')
+var mineflayer = require('mineflayer');
+var pathfinder = require('mineflayer-pathfinder');
+var autoVersionForge = require('../../src/client/autoVersionForge');
+var simplelogin = require('./simplelogin');
 
 var host = "server IP";
 var port = "server port";
@@ -19,14 +19,14 @@ const options = {
   forgeMods: undefined,
   channels: undefined,
   sl_pwd: 'simple login password'
-}
+};
 
 // add handler
 autoVersionForge(bot._client, options);
-simplelogin(bot._client,options)
+simplelogin(bot._client,options);
 
-bot.loadPlugin(pathfinder.pathfinder)
-console.info('Started mineflayer')
+bot.loadPlugin(pathfinder.pathfinder);
+console.info('Started mineflayer');
 
 // set up logging
 bot.on('connect', function () {
@@ -35,4 +35,4 @@ bot.on('connect', function () {
 
 bot.on('spawn', function () {
     console.info('I spawned')
-})
+});
