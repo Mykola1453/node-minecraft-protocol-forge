@@ -5,7 +5,7 @@ Modyfing existing code for FML2, I managed to make minecraft-protocol-forge and,
 
 Few things to consider. First of all, make sure that your protodef library is of version is higher than 1.15.0 (minecraft-protocol-forge from [npm repository](https://www.npmjs.com/package/minecraft-protocol-forge) asks for 0.25.0 version of protodef, which breaks things). 
 
-And second, [mineflayer_forge_simplelogin example](./examples/mineflayer_forge_simplelogin) from this fork will show you this error with some mods (like TeamAbnormals ones):
+And second, take a look at examples. I added two mineflayer examples that you can start with. [One](./examples/mineflayer_forge_simplelogin) of them works with [SimpleLogin](https://www.curseforge.com/minecraft/mc-mods/simple-login) mod that adds more security for offline servers. Use [another mineflayer example](./examples/mineflayer_forge) if you don't use SimpleLogin. Now, trying to login to server might give you this error with some mods (like TeamAbnormals ones):
 ```
 ...\mineflayer\lib\plugins\entities.js:202
     entity.type = entityData.type || 'object'
@@ -21,9 +21,9 @@ I'm not sure why it happens, but it is easily fixable by adding if statement aro
     }
 ```
 
-With this error away, you can finally connect to modded Minecraft 1.18+ server with Forge mods. Below is the screenshot of me connecting bot to private Minecraft server in offline mode, with 106 mods (including [SimpleLogin](https://www.curseforge.com/minecraft/mc-mods/simple-login) mod and also [OfflineSkins](https://www.curseforge.com/minecraft/mc-mods/offlineskins) mod to restore online mode skins). Even though command line gives a lot of messages like `Chunk size is 35705 but only 11 was read ; partial packet`, bot still connects (with OfflineSkins assiging a lizard skin to the bot).
+With this error away, you can finally connect to modded Minecraft 1.18+ server with Forge mods. Below is the screenshot of me connecting bot to private Minecraft server in offline mode, with 106 mods (including [SimpleLogin](https://www.curseforge.com/minecraft/mc-mods/simple-login) mod and also [OfflineSkins](https://www.curseforge.com/minecraft/mc-mods/offlineskins) mod to restore online mode skins). Even though command line gives a lot of `partial packet` messages, bot still connects with a lizard skin thanks to OfflineSkins mod.
 
-![bot connects to the server](./mineflayer_forge_simplelogin.png)
+![bot connects to the server with SimpleLogin mod](./screenshot_mineflayer_forge_simplelogin.png)
 
 ## Original doc
 
