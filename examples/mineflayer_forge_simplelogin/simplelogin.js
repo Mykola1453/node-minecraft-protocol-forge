@@ -1,5 +1,4 @@
 ﻿const Client = require("minecraft-protocol").Client;
-const debug = require("debug")("minecraft-protocol-forge")
 const { SHA256 } = require('crypto-js');
 
 const toBytes = (text) => {
@@ -78,6 +77,6 @@ module.exports = function (client, options) {
 			channel: 'simplelogin:main',
 			data: buffer,
 		});
-    }
+    };
   });
 };
