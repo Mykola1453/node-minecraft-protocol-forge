@@ -1,4 +1,32 @@
 # minecraft-protocol-forge
+
+## Fork doc
+Modyfing existing code for FML2, I managed to make minecraft-protocol-forge and, by extension, minecraft-protocol and mineflayer to work with FML3 protocol (Minecraft with Forge, 1.18+). This is mere proof of concept, I don't have time to support this and things can still go wrong. However, feel free to fork it further or improve upon.
+
+Few things to consider. First of all, make sure that your protodef library is of version is higher than 1.15.0 (minecraft-protocol-forge from [npm repository](https://www.npmjs.com/package/minecraft-protocol-forge) asks for 0.25.0 version of protodef, which breaks things). 
+
+And second, [mineflayer_forge_simplelogin example](./examples/mineflayer_forge_simplelogin) from this fork will show you this error with some mods (like TeamAbnormals ones):
+```
+...\mineflayer\lib\plugins\entities.js:202
+    entity.type = entityData.type || 'object'
+                             ^
+
+TypeError: Cannot read properties of undefined (reading 'type')
+```
+
+I'm not sure why it happens, but it is easily fixable by adding if statement around `entity.type = entityData.type || 'object'` in [entities.js](https://github.com/PrismarineJS/mineflayer/blob/d764706f53dbe7ba16cf49645d66d192a309cc5c/lib/plugins/entities.js#L203) file from mineflayer:
+```
+    if (entityData) {
+        entity.type = entityData.type || 'object'
+    }
+```
+
+With this error away, you can finally connect to modded Minecraft 1.18+ server with Forge mods. Below is the screenshot of me connecting bot to private Minecraft server in offline mode, with 106 mods (including [SimpleLogin](https://www.curseforge.com/minecraft/mc-mods/simple-login) mod and also [OfflineSkins](https://www.curseforge.com/minecraft/mc-mods/offlineskins) mod to restore online mode skins). Even though command line gives a lot of messages like `Chunk size is 35705 but only 11 was read ; partial packet`, bot still connects (with OfflineSkins assiging a lizard skin to the bot).
+
+![bot connects to the server](./mineflayer_forge_simplelogin.png)
+
+## Original doc
+
 [![NPM version](https://img.shields.io/npm/v/minecraft-protocol-forge.svg)](http://npmjs.com/package/minecraft-protocol-forge)
 [![Join the chat at https://gitter.im/PrismarineJS/node-minecraft-protocol](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/PrismarineJS/node-minecraft-protocol)
 
