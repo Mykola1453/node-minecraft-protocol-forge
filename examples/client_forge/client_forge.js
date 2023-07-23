@@ -26,7 +26,7 @@ const options = {
   forgeMods: undefined,
   channels: undefined,
   registries: undefined,
-}
+};
 
 // add handler
 autoVersionForge(client, options);
